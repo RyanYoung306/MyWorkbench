@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="" />
+    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="init">
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/Message.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageArea.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/SettingsPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/contexts/ChatContent.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/contexts/ConnectionContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/services/apiClient.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/utils/markdownFormatter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/lib/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +71,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\twotr\WebstormProjects\MyWorkbench\MyWorkbench\src\components\ChatTab" />
+      <recent name="C:\Users\twotr\WebstormProjects\MyWorkbench\MyWorkbench\src" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -63,11 +92,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741802900745</updated>
-      <workItem from="1741802902113" duration="1753000" />
+      <workItem from="1741802902113" duration="15846000" />
     </task>
+    <task id="LOCAL-00001" summary="init">
+      <option name="closed" value="true" />
+      <created>1741804798173</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741804798173</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
   </component>
 </project>

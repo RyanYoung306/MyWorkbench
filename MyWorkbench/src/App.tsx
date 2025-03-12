@@ -1,33 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Header from './components/Header';
+import ChatTab from './components/ChatTab/ChatTab';
+import { ConnectionProvider } from './contexts/ConnectionContext';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <ConnectionProvider>
+            <div className="container mx-auto p-4 max-w-7xl">
+                <Header />
+
+                <Tabs defaultValue="chat" className="w-full">
+                    <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+                        <TabsTrigger value="chat">Chat</TabsTrigger>
+                        <TabsTrigger value="grammar">Grammar Checker</TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="chat" className="mt-0">
+                        <ChatTab />
+                    </TabsContent>
+
+                    {/*<TabsContent value="grammar" className="mt-0">*/}
+                    {/*    <GrammarTab />*/}
+                    {/*</TabsContent>*/}
+                </Tabs>
+            </div>
+        </ConnectionProvider>
     </>
   )
 }
