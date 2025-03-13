@@ -1,5 +1,3 @@
-// components/ChatTab/Message.js
-import React from 'react';
 import { formatMarkdown } from '@/utils/markdownFormatter.ts';
 
 interface MessageProps {

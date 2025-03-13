@@ -67,12 +67,13 @@ class ApiClient {
      * Send a chat message to the LLM
      */
     async sendChatMessage(
-        model: string,
+        model: string | null,
         messages: ChatMessage[],
         temperature: number,
         maxTokens: number
     ): Promise<ChatResponse> {
         try {
+            console.log('model:', messages);
             const response = await fetch(`${this.baseUrl}/api/chat`, {
                 method: 'POST',
                 headers: {
@@ -136,14 +137,25 @@ class ApiClient {
     /**
      * Save a chat session
      */
-    async saveChat(chat: ChatSession): Promise<ChatSession> {
+    async saveChat(chat: {
+        id: string | null;
+        title: string;
+        messages: { role: string; content: string }[];
+        updatedAt: string;
+    }): Promise<ChatSession> {
+        // If no id exists, remove it so that backend can auto-generate one.
+        const payload = {
+            ...chat,
+            id: chat.id ? chat.id : undefined
+        };
+
         try {
             const response = await fetch(`${this.baseUrl}/api/chat-history`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(chat)
+                body: JSON.stringify(payload)
             });
 
             if (!response.ok) {
@@ -212,7 +224,6 @@ class ApiClient {
     }
 }
 
-// Create a singleton instance
 const apiClient = new ApiClient();
 
 export default apiClient;

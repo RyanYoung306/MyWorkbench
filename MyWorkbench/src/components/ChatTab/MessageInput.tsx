@@ -1,4 +1,3 @@
-// components/ChatTab/MessageInput.js
 import React, { useState } from 'react';
 import { useChat } from '../../contexts/ChatContent.tsx';
 import { useConnection } from '../../contexts/ConnectionContext';
@@ -11,7 +10,7 @@ const MessageInput = () => {
     const { sendMessage, isLoading } = useChat();
     const { isConnected } = useConnection();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
         if (inputText.trim() && isConnected && !isLoading) {
@@ -20,14 +19,14 @@ const MessageInput = () => {
         }
     };
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.ctrlKey && e.key === 'Enter') {
             handleSubmit(e);
         }
     };
 
     return (
-        <div className=" p-4 bg-white border-t border-slate-200">
+        <div className=" p-4 ">
             <form onSubmit={handleSubmit} className="flex gap-2">
                 <Textarea
                     value={inputText}

@@ -5,28 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatContainer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/Message.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageArea.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/SettingsPanel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/contexts/ChatContent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/contexts/ConnectionContext.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/services/apiClient.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/utils/markdownFormatter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/template/template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/lib/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageArea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageArea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/contexts/ChatContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/contexts/ChatContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/services/apiClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/services/apiClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/utils/markdownFormatter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/utils/markdownFormatter.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,22 +27,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "RyanYoung306"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;RyanYoung306&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/RyanYoung306/MyWorkbench.git",
-    "accountId": "0b6ac7c9-c32e-47fa-bc6d-b0ec115143b3"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RyanYoung306/MyWorkbench.git&quot;,
+    &quot;accountId&quot;: &quot;0b6ac7c9-c32e-47fa-bc6d-b0ec115143b3&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2uE9WdL5QJfLMkLkfh7tQoOn6b1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -59,6 +50,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Node.js.apiClient.ts.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
@@ -92,7 +84,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741802900745</updated>
-      <workItem from="1741802902113" duration="15846000" />
+      <workItem from="1741802902113" duration="16791000" />
+      <workItem from="1741882258039" duration="12644000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -102,11 +95,30 @@
       <option name="project" value="LOCAL" />
       <updated>1741804798173</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="init">
+      <option name="closed" value="true" />
+      <created>1741822969766</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741822969766</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />

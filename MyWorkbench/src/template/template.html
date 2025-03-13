@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek Local Interface</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Tab styling */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            margin: 0 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .tab-button.active {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .tab-button:hover:not(.active) {
+            background-color: #e0e0e0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            height: calc(100vh - 150px);
+        }
+
+        .settings-panel {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .chat-container {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f5f7f9;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .bot-message {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message-input {
+            display: flex;
+            padding: 15px;
+            background-color: white;
+            border-top: 1px solid #eaeaea;
+        }
+
+        textarea {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 12px;
+            resize: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1a252f;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .parameter-explanation {
+            margin-top: 5px;
+            color: #666;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .status.connected {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status.disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .loading {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: #2c3e50;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        pre {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .message code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Grammar checker specific styles */
+        .grammar-container {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+
+        .grammar-input-area {
+            padding: 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .grammar-result-area {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        #grammar-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        #check-grammar-btn {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #check-grammar-btn:hover {
+            background-color: #1a252f;
+        }
+
+        #check-grammar-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .grammar-placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        .connection-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+        }
+
+        .grammar-instructions {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .grammar-instructions h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .diff-added {
+            background-color: #e6ffed;
+            color: #22863a;
+            text-decoration: none;
+            padding: 0 2px;
+        }
+
+        .diff-removed {
+            background-color: #ffeef0;
+            color: #cb2431;
+            text-decoration: line-through;
+            padding: 0 2px;
+        }
+        /* Chat History Styles */
+        .chat-container {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        }
+
+        .chat-history-container {
+            width: 250px;
+            background-color: #f0f4f8;
+            border-radius: 8px 0 0 8px;
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-history-header {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #e6edf5;
+        }
+
+        .chat-history-header h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #2c3e50;
+            flex-basis: 100%;
+            margin-bottom: 10px;
+        }
+
+        .chat-history-header button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            flex-grow: 1;
+            margin: 0 2px;
+        }
+
+        .chat-history-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .chat-history-item {
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            position: relative;
+            background-color: #f9f9f9;
+            border: 1px solid #e9e9e9;
+            transition: all 0.2s;
+        }
+
+        .chat-history-item:hover {
+            background-color: #edf2f7;
+        }
+
+        .chat-history-item.active {
+            background-color: #e2e8f0;
+            border-color: #cbd5e0;
+        }
+
+        .chat-title {
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 20px;
+        }
+
+        .chat-date {
+            font-size: 11px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .delete-chat-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #a0aec0;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            line-height: 1;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .delete-chat-btn:hover {
+            background-color: #e53e3e;
+            color: white;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f5f7f9;
+            width: calc(100% - 250px);
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+            }
+
+            .chat-history-container {
+                width: 100%;
+                height: 200px;
+                border-radius: 8px 8px 0 0;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .chat-messages {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>DeepSeek Local Interface</h1>
+
+<div class="tabs">
+    <button class="tab-button active" data-tab="chat-tab">Chat</button>
+    <button class="tab-button" data-tab="grammar-tab">Grammar Checker</button>
+</div>
+
+<div class="container tab-content" id="chat-tab">
+    <div class="settings-panel">
+        <h2>Connection Settings</h2>
+        <div class="form-group">
+            <label for="api-url">Backend API URL</label>
+            <input type="text" id="api-url" value="http://localhost:8080" placeholder="http://localhost:8080">
+        </div>
+
+        <div class="form-group">
+            <label for="model-select">Model</label>
+            <select id="model-select">
+                <option value="llama3">Llama 3</option>
+                <option value="mistral">Mistral</option>
+                <option value="deepseek-coder">DeepSeek Coder</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="temperature">Temperature</label>
+            <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7">
+            <div id="temperature-value">0.7</div>
+            <div class="parameter-explanation">
+                <small>Controls randomness: Lower values (0.0) make responses more focused and deterministic,
+                    while higher values (1.0) make responses more creative and diverse.</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="max-tokens">Max Tokens</label>
+            <input type="number" id="max-tokens" value="2048" min="1" max="8192">
+            <div class="parameter-explanation">
+                <small>Maximum number of tokens (words/characters) in the response. Higher values allow for longer responses but may take longer to generate.</small>
+            </div>
+        </div>
+
+        <button id="connect-btn">Connect to DeepSeek</button>
+
+        <div id="connection-status" class="status disconnected">
+            Disconnected
+        </div>
+
+        <h2>Model Info</h2>
+        <div id="model-info">
+            <p>Connect to see model information</p>
+        </div>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">
+                <p>Hello! I'm your local DeepSeek assistant. Connect to a local DeepSeek instance to start chatting.</p>
+            </div>
+        </div>
+
+        <div class="message-input">
+            <textarea id="user-input" placeholder="Type your message here..." rows="3" disabled></textarea>
+            <button id="send-btn" disabled>Send</button>
+        </div>
+    </div>
+</div>
+
+<div class="container tab-content" id="grammar-tab" style="display: none;">
+    <div class="settings-panel">
+        <h2>Grammar Checker Settings</h2>
+        <div class="form-group">
+            <label for="grammar-model-select">Model</label>
+            <select id="grammar-model-select">
+                <option value="llama3">Llama 3</option>
+                <option value="mistral">Mistral</option>
+                <option value="deepseek-coder">DeepSeek Coder</option>
+            </select>
+        </div>
+
+        <div class="connection-info">
+            <div id="grammar-connection-status" class="status disconnected">
+                Disconnected
+            </div>
+            <button id="grammar-connect-btn">Connect</button>
+        </div>
+
+        <div class="grammar-instructions">
+            <h3>How to use</h3>
+            <p>This tool will check and correct your text for grammar, spelling, and style improvements.</p>
+            <ol>
+                <li>Connect to the LLM service</li>
+                <li>Paste your text in the input box</li>
+                <li>Click "Check Grammar" to receive corrections</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="grammar-container">
+        <div class="grammar-input-area">
+            <h3>Your Text</h3>
+            <textarea id="grammar-input" placeholder="Paste your text here for grammar and spelling correction..." rows="10" disabled></textarea>
+            <button id="check-grammar-btn" disabled>Check Grammar</button>
+        </div>
+
+        <div class="grammar-result-area">
+            <h3>Corrected Text</h3>
+            <div id="grammar-results">
+                <p class="grammar-placeholder">Connect to an LLM and submit text to see corrections here.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons and tabs
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => {
+                    content.style.display = 'none';
+                    content.classList.remove('active');
+                });
+
+                // Add active class to current button and show corresponding tab
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                const activeTab = document.getElementById(tabId);
+                activeTab.style.display = 'flex';
+                activeTab.classList.add('active');
+            });
+        });
+
+        // Main chat functionality
+        const apiUrlInput = document.getElementById('api-url');
+        const modelSelect = document.getElementById('model-select');
+        const temperatureInput = document.getElementById('temperature');
+        const temperatureValue = document.getElementById('temperature-value');
+        const maxTokensInput = document.getElementById('max-tokens');
+        const connectBtn = document.getElementById('connect-btn');
+        const connectionStatus = document.getElementById('connection-status');
+        const modelInfo = document.getElementById('model-info');
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        let isConnected = false;
+
+        // Update temperature value display
+        temperatureInput.addEventListener('input', function() {
+            temperatureValue.textContent = this.value;
+        });
+
+        // Handle connect button
+        connectBtn.addEventListener('click', function() {
+            if (isConnected) {
+                disconnectFromAPI();
+            } else {
+                connectToAPI();
+            }
+        });
+
+        // Handle send button
+        sendBtn.addEventListener('click', sendMessage);
+
+        // Also send message on Ctrl+Enter
+        userInput.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function connectToAPI() {
+            const apiUrl = apiUrlInput.value.trim();
+
+            if (!apiUrl) {
+                alert('Please enter a valid API URL');
+                return;
+            }
+
+            // Show loading state
+            connectBtn.disabled = true;
+            connectionStatus.className = 'status';
+            connectionStatus.innerHTML = '<div class="spinner"></div> Connecting...';
+
+            // Connect to our Spring Boot backend
+            fetch('http://localhost:8080/api/models')
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to connect to backend API');
+                    return response.json();
+                })
+                .then(data => {
+                    isConnected = true;
+                    userInput.disabled = false;
+                    sendBtn.disabled = false;
+                    connectBtn.textContent = 'Disconnect';
+                    connectBtn.disabled = false;
+                    connectionStatus.className = 'status connected';
+                    connectionStatus.textContent = 'Connected to LLM API';
+
+                    // Update model dropdown with available models
+                    modelSelect.innerHTML = '';
+                    data.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model.id;
+                        option.textContent = model.id;
+                        modelSelect.appendChild(option);
+                    });
+
+                    // Display model info
+                    modelInfo.innerHTML = `
+                            <p><strong>Available Models:</strong> ${data.length}</p>
+                            <p><strong>Selected Model:</strong> ${modelSelect.value}</p>
+                            <p><strong>Backend API:</strong> ${apiUrl}</p>
+                            <p><strong>Status:</strong> Ready</p>
+                        `;
+
+                    // Add system message
+                    addMessage('Connected to your local LLM. Ready to chat!', 'bot');
+                })
+                .catch(error => {
+                    connectionStatus.className = 'status disconnected';
+                    connectionStatus.textContent = `Connection failed: ${error.message}`;
+                    connectBtn.disabled = false;
+
+                    // Add error message
+                    addMessage(`Failed to connect to the backend API. Make sure your Spring Boot application is running on http://localhost:8080. Error: ${error.message}`, 'bot');
+                });
+        }
+
+        function disconnectFromAPI() {
+            isConnected = false;
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+            connectBtn.textContent = 'Connect to DeepSeek';
+            connectionStatus.className = 'status disconnected';
+            connectionStatus.textContent = 'Disconnected';
+
+            modelInfo.innerHTML = '<p>Connect to see model information</p>';
+
+            addMessage('Disconnected from DeepSeek API', 'bot');
+        }
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+
+            if (!message || !isConnected) return;
+
+            // Add user message to chat
+            addMessage(message, 'user');
+
+            // Clear input
+            userInput.value = '';
+
+            // Disable input while waiting for response
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+
+            // Add typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'message bot-message loading';
+            typingIndicator.innerHTML = '<div class="spinner"></div> Thinking...';
+            chatMessages.appendChild(typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Create request payload
+            const chatHistoryMessages = Array.from(document.querySelectorAll('.message'))
+                .filter(el => !el.classList.contains('loading'))
+                .slice(-10) // Get last 10 messages for context
+                .map(el => {
+                    const isUser = el.classList.contains('user-message');
+                    const content = el.innerText;
+                    return {
+                        role: isUser ? 'user' : 'assistant',
+                        content: content
+                    };
+                });
+
+            // Make sure the latest user message is included
+            const userMsg = {
+                role: 'user',
+                content: message
+            };
+
+            // If no chat history found in DOM, just use the current message
+            const messages = chatHistoryMessages.length > 0 ? chatHistoryMessages : [userMsg];
+
+            // Make sure the latest message is included
+            if (chatHistoryMessages.length > 0 &&
+                chatHistoryMessages[chatHistoryMessages.length - 1].content !== message &&
+                chatHistoryMessages[chatHistoryMessages.length - 1].role !== 'user') {
+                messages.push(userMsg);
+            }
+
+            // Call our backend API
+            fetch('http://localhost:8080/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: modelSelect.value,
+                    messages: messages,
+                    temperature: parseFloat(temperatureInput.value),
+                    maxTokens: parseInt(maxTokensInput.value)
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`API returned ${response.status}: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Remove typing indicator
+                    chatMessages.removeChild(typingIndicator);
+
+                    // Add bot response
+                    if (data.messages && data.messages.length > 0) {
+                        addMessage(data.messages[0].content, 'bot');
+                    } else {
+                        addMessage("No response received from the model.", 'bot');
+                    }
+
+                    // Re-enable input
+                    userInput.disabled = false;
+                    sendBtn.disabled = false;
+
+                    // Save chat history after response is received
+                    saveCurrentChat();
+                })
+                .catch(error => {
+                    // Remove typing indicator
+                    chatMessages.removeChild(typingIndicator);
+
+                    // Add error message
+                    addMessage(`Error: ${error.message}`, 'bot');
+
+                    // Re-enable input
+                    userInput.disabled = false;
+                    sendBtn.disabled = false;
+
+                    // Still save chat even on error
+                    saveCurrentChat();
+                });
+        }
+
+        function addMessage(text, sender) {
+            console.log("Adding message:", sender, text ? text.substring(0, 30) + "..." : "empty");
+
+            // Guard against undefined or null text
+            if (!text) {
+                console.error("Attempted to add message with empty text");
+                text = "[Empty message]";
+            }
+
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${sender}-message`;
+
+            // Convert markdown-style code blocks to HTML
+            text = text.replace(/```([a-z]*)\n([\s\S]*?)\n```/g, function(match, language, code) {
+                return `<pre><code class="language-${language}">${escapeHTML(code)}</code></pre>`;
+            });
+
+            // Convert inline code
+            text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+            // Convert line breaks to <br>
+            text = text.replace(/\n/g, '<br>');
+
+            messageElement.innerHTML = text;
+            chatMessages.appendChild(messageElement);
+
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function escapeHTML(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Grammar checker functionality
+        const grammarModelSelect = document.getElementById('grammar-model-select');
+        const grammarConnectBtn = document.getElementById('grammar-connect-btn');
+        const grammarConnectionStatus = document.getElementById('grammar-connection-status');
+        const grammarInput = document.getElementById('grammar-input');
+        const checkGrammarBtn = document.getElementById('check-grammar-btn');
+        const grammarResults = document.getElementById('grammar-results');
+
+        let grammarConnected = false;
+
+        // Grammar checker connect button
+        grammarConnectBtn.addEventListener('click', function() {
+            if (grammarConnected) {
+                disconnectGrammarChecker();
+            } else {
+                connectGrammarChecker();
+            }
+        });
+
+        // Check grammar button
+        checkGrammarBtn.addEventListener('click', function() {
+            checkGrammar();
+        });
+
+        function connectGrammarChecker() {
+            const apiUrl = apiUrlInput.value.trim();
+
+            if (!apiUrl) {
+                alert('Please enter a valid API URL');
+                return;
+            }
+
+            // Show loading state
+            grammarConnectBtn.disabled = true;
+            grammarConnectionStatus.className = 'status';
+            grammarConnectionStatus.innerHTML = '<div class="spinner"></div> Connecting...';
+
+            // Check connection to the backend
+            fetch(apiUrl + '/api/models')
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to connect to backend API');
+                    return response.json();
+                })
+                .then(data => {
+                    grammarConnected = true;
+                    grammarInput.disabled = false;
+                    checkGrammarBtn.disabled = false;
+                    grammarConnectBtn.textContent = 'Disconnect';
+                    grammarConnectBtn.disabled = false;
+                    grammarConnectionStatus.className = 'status connected';
+                    grammarConnectionStatus.textContent = 'Connected to LLM API';
+
+                    // Update the model options
+                    grammarModelSelect.innerHTML = '';
+                    data.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model.id;
+                        option.textContent = model.id;
+                        grammarModelSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    grammarConnectionStatus.className = 'status disconnected';
+                    grammarConnectionStatus.textContent = `Connection failed: ${error.message}`;
+                    grammarConnectBtn.disabled = false;
+                });
+        }
+
+        function disconnectGrammarChecker() {
+            grammarConnected = false;
+            grammarInput.disabled = true;
+            checkGrammarBtn.disabled = true;
+            grammarConnectBtn.textContent = 'Connect';
+            grammarConnectionStatus.className = 'status disconnected';
+            grammarConnectionStatus.textContent = 'Disconnected';
+
+            grammarResults.innerHTML = '<p class="grammar-placeholder">Connect to an LLM and submit text to see corrections here.</p>';
+        }
+
+        function checkGrammar() {
+            const text = grammarInput.value.trim();
+
+            if (!text || !grammarConnected) {
+                alert('Please enter some text to check');
+                return;
+            }
+
+            // Create loading indicator
+            grammarResults.innerHTML = '<div class="loading"><div class="spinner"></div> Checking grammar...</div>';
+
+            // Disable input while processing
+            grammarInput.disabled = true;
+            checkGrammarBtn.disabled = true;
+
+            // Prepare the system message for grammar correction
+            const messages = [
+                {
+                    role: "system",
+                    content: "You are a helpful grammar and spelling assistant. Your task is to correct any grammar, " +
+                        "spelling, punctuation, or style issues in the text provided. Provide the corrected " +
+                        "version followed by a brief explanation of the changes you made. If the text is already " +
+                        "correct, simply say so."
+                },
+                {
+                    role: "user",
+                    content: text
+                }
+            ];
+
+            // Make API request
+            fetch(apiUrlInput.value.trim() + '/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: grammarModelSelect.value,
+                    messages: messages,
+                    temperature: 0.3,  // Lower temperature for more precise grammar checking
+                    maxTokens: 2048
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`API returned ${response.status}: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Re-enable input
+                    grammarInput.disabled = false;
+                    checkGrammarBtn.disabled = false;
+
+                    // Display results
+                    if (data.messages && data.messages.length > 0) {
+                        const responseText = data.messages[0].content;
+
+                        // Format the response with markdown-like formatting
+                        let formattedText = responseText
+                            .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>') // Code blocks
+                            .replace(/`([^`]+)`/g, '<code>$1</code>') // Inline code
+                            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>') // Bold
+                            .replace(/\*([^*]+)\*/g, '<em>$1</em>') // Italic
+                            .replace(/\n/g, '<br>'); // Line breaks
+
+                        grammarResults.innerHTML = formattedText;
+                    } else {
+                        grammarResults.innerHTML = "<p>No response received from the model.</p>";
+                    }
+                })
+                .catch(error => {
+                    grammarResults.innerHTML = `<p>Error: ${error.message}</p>`;
+                    grammarInput.disabled = false;
+                    checkGrammarBtn.disabled = false;
+                });
+        }
+        // Chat history management - add to your existing JS file
+        let currentChatId = null;
+
+        function initChatHistory() {
+            console.log("initChatHistory called");
+            // Create the chat history container in the DOM
+            const chatHistoryContainer = document.createElement('div');
+            chatHistoryContainer.className = 'chat-history-container';
+            chatHistoryContainer.innerHTML = `
+        <div class="chat-history-header">
+            <h3>Chat History</h3>
+            <button id="new-chat-btn">New Chat</button>
+            <button id="clear-history-btn">Clear All</button>
+        </div>
+        <div id="chat-history-list" class="chat-history-list"></div>
+    `;
+
+            // Insert at the beginning of the chat container
+            const chatContainer = document.querySelector('.chat-container');
+            chatContainer.insertBefore(chatHistoryContainer, chatContainer.firstChild);
+
+            if (!chatContainer) {
+                console.error("Chat container not found!");
+                return;
+            }
+
+            console.log("Initializing chat history");
+
+            // Add event listeners
+            document.getElementById('new-chat-btn').addEventListener('click', createNewChat);
+            document.getElementById('clear-history-btn').addEventListener('click', clearAllChatHistories);
+
+            // When connected to the API, load chat history
+            const originalConnectToAPI = connectToAPI;
+            connectToAPI = function() {
+                originalConnectToAPI.apply(this, arguments);
+
+                // Add a delay to ensure the connection is established
+                setTimeout(() => {
+                    if (isConnected) {
+                        loadChatHistoryList();
+                    }
+                }, 1000);
+            };
+
+            document.getElementById('send-btn').addEventListener('click', function() {
+                console.log("Send button clicked, scheduling save");
+                // Schedule save after a delay
+                setTimeout(function() {
+                    console.log("Executing scheduled save");
+                    saveCurrentChat();
+                }, 5000);
+            });
+
+            // Save chat when sending a message
+            const originalSendMessage = sendMessage;
+            sendMessage = function() {
+                const result = originalSendMessage.apply(this, arguments);
+
+                // Save the chat after a short delay to include the response
+                setTimeout(saveCurrentChat, 3000);
+
+                return result;
+            };
+
+            // Create a new chat
+            createNewChat();
+        }
+
+        function createNewChat() {
+            // Generate a new unique ID
+            currentChatId = 'chat_' + Date.now();
+
+            // Clear the chat area
+            chatMessages.innerHTML = '';
+
+            // Add initial system message
+            addMessage('Hello! I\'m your local assistant. How can I help you today?', 'bot');
+
+            // Update the UI
+            loadChatHistoryList();
+
+            return currentChatId;
+        }
+
+        function saveCurrentChat() {
+            console.log("saveCurrentChat called");
+
+            // Only save if we're connected
+            if (!isConnected) return;
+
+            // Get all messages from the chat area
+            const messages = [];
+
+            // Get all message elements
+            document.querySelectorAll('.message').forEach(el => {
+                // Skip any loading/thinking indicators
+                if (el.classList.contains('loading')) return;
+
+                // Determine the role based on CSS class
+                const isUserMessage = el.classList.contains('user-message');
+                const isBotMessage = el.classList.contains('bot-message');
+
+                // Only process elements that are either user or bot messages
+                if (isUserMessage || isBotMessage) {
+                    const role = isUserMessage ? 'user' : 'assistant';
+                    const content = el.innerText;
+
+                    // Only add if content is not empty
+                    if (content && content.trim()) {
+                        messages.push({
+                            role: role,
+                            content: content
+                        });
+                        console.log(`Adding ${role} message:`, content.substring(0, 30) + '...');
+                    }
+                }
+            });
+
+            // Only save if there's at least one message
+            if (messages.length > 0) {
+                console.log(`Saving ${messages.length} messages for chat ID ${currentChatId}`);
+                saveChatHistory(currentChatId, messages);
+            } else {
+                console.log("No messages to save");
+            }
+        }
+
+        function saveChatHistory(chatId, messages) {
+            const title = generateChatTitle(messages);
+
+            const requestBody = {
+                id: chatId,
+                title: title,
+                messages: messages.map(msg => ({
+                    role: msg.role,
+                    content: msg.content
+                }))
+            };
+
+            console.log("Saving chat history with payload:", JSON.stringify(requestBody));
+
+            // Send to backend
+            fetch(`${apiUrlInput.value}/api/chat-history`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to save chat history: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Chat history saved successfully:", data);
+                    loadChatHistoryList();
+                })
+                .catch(error => {
+                    console.error('Error saving chat history:', error);
+                });
+        }
+
+        function loadChatHistoryList() {
+            fetch(`${apiUrlInput.value}/api/chat-history`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to load chat history: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(chatSessions => {
+                    updateChatHistoryListUI(chatSessions);
+                })
+                .catch(error => {
+                    console.error('Error loading chat history:', error);
+                });
+        }
+
+        function updateChatHistoryListUI(chatSessions) {
+            const chatHistoryList = document.getElementById('chat-history-list');
+            if (!chatHistoryList) return;
+
+            // Clear the list
+            chatHistoryList.innerHTML = '';
+
+            // Add each chat to the list
+            chatSessions.forEach(chat => {
+                const chatItem = document.createElement('div');
+                chatItem.className = 'chat-history-item';
+                if (chat.id === currentChatId) {
+                    chatItem.classList.add('active');
+                }
+
+                const dateFormatter = new Intl.DateTimeFormat('default', {
+                    year: 'numeric', month: 'short', day: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                });
+
+                const formattedDate = chat.updatedAt ?
+                    dateFormatter.format(new Date(chat.updatedAt)) :
+                    'Unknown date';
+
+                chatItem.innerHTML = `
+            <div class="chat-title">${escapeHTML(chat.title)}</div>
+            <div class="chat-date">${formattedDate}</div>
+            <button class="delete-chat-btn" data-chat-id="${chat.id}">×</button>
+        `;
+
+                chatItem.addEventListener('click', function(e) {
+                    // Ignore if clicking the delete button
+                    if (e.target.classList.contains('delete-chat-btn')) return;
+
+                    loadChatHistoryById(chat.id);
+                });
+
+                chatHistoryList.appendChild(chatItem);
+            });
+
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-chat-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const chatId = this.getAttribute('data-chat-id');
+                    deleteChatHistory(chatId);
+                });
+            });
+        }
+
+        function loadChatHistoryById(chatId) {
+            console.log("Loading chat history by ID:", chatId);
+
+            fetch(`${apiUrlInput.value}/api/chat-history/${chatId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to load chat: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(chat => {
+                    console.log("Loaded chat:", chat);
+                    if (!chat) {
+                        throw new Error("Received empty chat data");
+                    }
+                    displayChatSession(chat);
+                })
+                .catch(error => {
+                    console.error('Error loading chat:', error);
+                    // Show error to user
+                    chatMessages.innerHTML = '';
+                    addMessage(`Error loading chat history: ${error.message}`, 'bot');
+                });
+        }
+
+        function displayChatSession(chat) {
+            // Set as current chat
+            currentChatId = chat.id;
+
+            // Clear the chat area
+            chatMessages.innerHTML = '';
+
+            console.log("Displaying chat session with messages:", chat.messages);
+
+            // Add the messages to the chat area
+            if (chat.messages && chat.messages.length > 0) {
+                chat.messages.forEach(msg => {
+                    // Convert the database role to UI sender type
+                    const sender = msg.role === 'user' ? 'user' : 'bot';
+
+                    console.log(`Displaying ${msg.role} message:`, msg.content.substring(0, 30) + '...');
+
+                    // Add the message
+                    addMessage(msg.content, sender);
+                });
+            }
+
+            // Update the UI to show this chat is active
+            loadChatHistoryList();
+        }
+
+        function deleteChatHistory(chatId) {
+            fetch(`${apiUrlInput.value}/api/chat-history/${chatId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to delete chat: ${response.status}`);
+                    }
+
+                    // Reload the chat history list
+                    loadChatHistoryList();
+
+                    // If the current chat was deleted, create a new one
+                    if (chatId === currentChatId) {
+                        createNewChat();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting chat:', error);
+                });
+        }
+
+        function clearAllChatHistories() {
+            if (confirm('Are you sure you want to delete all chat histories?')) {
+                fetch(`${apiUrlInput.value}/api/chat-history`, {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Failed to delete all chats: ${response.status}`);
+                        }
+
+                        // Reload the chat history list
+                        loadChatHistoryList();
+
+                        // Create a new chat
+                        createNewChat();
+                    })
+                    .catch(error => {
+                        console.error('Error deleting all chats:', error);
+                    });
+            }
+        }
+
+        function generateChatTitle(messages) {
+            // Generate a title based on the first user message
+            for (let i = 0; i < messages.length; i++) {
+                if (messages[i].role === 'user') {
+                    const message = messages[i].content;
+                    // Truncate and create a title from the first user message
+                    return message.length > 30 ? message.substring(0, 30) + '...' : message;
+                }
+            }
+            return 'New Chat ' + new Date().toLocaleString();
+        }
+        initChatHistory();
+    });
+</script>
+</body>
+</html>

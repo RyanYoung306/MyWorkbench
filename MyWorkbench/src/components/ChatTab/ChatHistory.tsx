@@ -31,9 +31,6 @@ const ChatHistory = () => {
         }
     };
 
-    // Debug information to verify data
-    console.log("Chat history data:", chatHistory);
-
     return (
         <div className="chat-history-container">
             <div className="chat-history-header">

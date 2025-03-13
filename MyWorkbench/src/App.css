@@ -1,8 +1,8 @@
 #root {
   margin: 0 auto;
-  padding: 1rem;  /* Reduced padding */
+  /*padding: 1rem;  !* Reduced padding *!*/
   width: 100%;    /* Ensure full width */
-  max-width: 1600px; /* Larger max width */
+  max-width: 100%; /* Larger max width */
 }
 
 /*.logo {*/

@@ -1,6 +1,7 @@
 // contexts/ChatContext.tsx
 import React, { createContext, useState, useContext, useCallback, useEffect, ReactNode } from 'react';
 import { useConnection } from './ConnectionContext';
+import apiClient from '@/services/apiClient';
 
 // Define types
 export interface Message {
@@ -30,7 +31,7 @@ interface ChatContextValue {
     sendMessage: (content: string) => Promise<void>;
     createNewChat: () => string;
     loadChatHistoryById: (chatId: string) => Promise<void>;
-    deleteChatHistory: (chatId: string) => Promise<void>;
+    deleteChatHistory: (chatId: string | number) => Promise<void>;
     clearAllChatHistories: () => Promise<void>;
     loadChatHistoryList: () => Promise<void>;
 }
@@ -59,11 +60,11 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     } = useConnection();
 
     const [messages, setMessages] = useState<Message[]>([
-        // {
-        //     id: 'initial-message',
-        //     content: 'Hello! I\'m your local DeepSeek assistant. Connect to a local DeepSeek instance to start chatting.',
-        //     sender: 'bot'
-        // }
+        {
+            id: 'initial-message',
+            content: 'Hello! I\'m your local DeepSeek assistant. Connect to a local DeepSeek instance to start chatting.',
+            sender: 'bot'
+        }
     ]);
 
     const [chatHistory, setChatHistory] = useState<ChatHistoryItem[]>([]);
@@ -98,7 +99,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
         if (!content.trim() || !isConnected) return;
 
         // Add user message to chat
-        addMessage(content, 'user');
+        const userMessage = addMessage(content, 'user');
 
         // Show loading state
         setIsLoading(true);
@@ -119,35 +120,52 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
                 content
             });
 
-            // Call API
-            const response = await fetch(`${apiUrl}/api/chat`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    model: selectedModel,
-                    messages: apiMessages,
-                    temperature,
-                    maxTokens
-                })
-            });
+            // Call API using ApiClient
+            const data = await apiClient.sendChatMessage(
+                selectedModel,
+                apiMessages,
+                temperature,
+                maxTokens
+            );
 
-            if (!response.ok) {
-                throw new Error(`API returned ${response.status}: ${response.statusText}`);
-            }
-
-            const data = await response.json();
-
-            // Add bot response
+            // Add bot response based on returned data
+            let botMessage;
             if (data.messages && data.messages.length > 0) {
-                addMessage(data.messages[0].content, 'bot');
+                botMessage = addMessage(data.messages[0].content, 'bot');
             } else {
-                addMessage("No response received from the model.", 'bot');
+                botMessage = addMessage("No response received from the model.", 'bot');
             }
 
-            // Save chat history
-            saveCurrentChat();
+            // Create a complete message array that includes both the new user message and bot response
+            const updatedMessages = [...messages, userMessage, botMessage].filter(
+                msg => !msg.hasOwnProperty('isLoading')
+            );
+
+            // Generate title
+            const firstUserMsg = updatedMessages.find(msg => msg.sender === 'user');
+            const title =
+                firstUserMsg && firstUserMsg.content.length > 30
+                    ? firstUserMsg.content.substring(0, 30) + '...'
+                    : firstUserMsg
+                        ? firstUserMsg.content
+                        : 'New Chat';
+
+            // Prepare chat session with updated messages
+            const chatSession = {
+                id: currentChatId,
+                title,
+                messages: updatedMessages.map(msg => ({
+                    role: msg.sender === 'user' ? 'user' : 'assistant',
+                    content: msg.content
+                })),
+                updatedAt: new Date().toISOString()
+            };
+
+            // Save chat history using ApiClient
+            await apiClient.saveChat(chatSession);
+            await loadChatHistoryList();
+
+
         } catch (error) {
             addMessage(`Error: ${error instanceof Error ? error.message : 'An unknown error occurred'}`, 'bot');
         } finally {
@@ -159,15 +177,18 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
         const newChatId = 'chat_' + Date.now();
         setCurrentChatId(newChatId);
 
-        // Clear messages and add initial message
-        setMessages([{
-            id: 'welcome-message',
-            content: 'Hello! I\'m your local assistant. How can I help you today?',
-            sender: 'bot'
-        }]);
+        // Clear existing messages to start a new chat session
+        setMessages([
+            {
+                id: 'initial-message',
+                content: 'Hello! I\'m your local DeepSeek assistant. Connect to a local DeepSeek instance to start chatting.',
+                sender: 'bot'
+            }
+        ]);
+
 
         return newChatId;
-    }, []);
+    }, [setCurrentChatId, setMessages]);
 
     const loadChatHistoryList = useCallback(async () => {
         if (!isConnected) return;
