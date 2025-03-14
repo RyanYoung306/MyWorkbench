@@ -4,25 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/template/template.html" afterDir="false" />
+    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="update chat saving">
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/theme-provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/theme-toggle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/public/vite.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/public/myWorkbench.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/Message.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageArea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageArea.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/contexts/ChatContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/contexts/ChatContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/services/apiClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/services/apiClient.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/utils/markdownFormatter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/utils/markdownFormatter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -85,7 +88,7 @@
       <option name="presentableId" value="Default" />
       <updated>1741802900745</updated>
       <workItem from="1741802902113" duration="16791000" />
-      <workItem from="1741882258039" duration="12644000" />
+      <workItem from="1741882258039" duration="18775000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -103,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741822969766</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update chat saving">
+      <option name="closed" value="true" />
+      <created>1741899292168</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741899292168</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +133,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="update chat saving" />
+    <option name="LAST_COMMIT_MESSAGE" value="update chat saving" />
   </component>
 </project>
