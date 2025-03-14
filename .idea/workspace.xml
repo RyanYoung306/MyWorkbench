@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="update chat saving">
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/theme-provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/theme-toggle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/public/vite.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/public/myWorkbench.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/vite.config.ts" afterDir="false" />
-    </list>
+    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="added ui dark light mode" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1741802900745</updated>
       <workItem from="1741802902113" duration="16791000" />
-      <workItem from="1741882258039" duration="18775000" />
+      <workItem from="1741882258039" duration="18881000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -114,7 +104,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741899292168</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added ui dark light mode">
+      <option name="closed" value="true" />
+      <created>1741910453924</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741910453924</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added ui dark light mode">
+      <option name="closed" value="true" />
+      <created>1741910482511</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741910482511</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +140,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="update chat saving" />
-    <option name="LAST_COMMIT_MESSAGE" value="update chat saving" />
+    <MESSAGE value="added ui dark light mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ui dark light mode" />
   </component>
 </project>
