@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Message from './Message.tsx';
 import { useChat } from '../../contexts/ChatContent.tsx';
 import { Loader2 } from 'lucide-react';
@@ -9,6 +9,7 @@ const MessageList = () => {
 
     // Scroll to bottom when messages change
     useEffect(() => {
+        // @ts-ignore
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 

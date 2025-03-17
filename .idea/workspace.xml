@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="added ui dark light mode">
+    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="update convo history and output formatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/MessageList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/utils/markdownFormatter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/utils/markdownFormatter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +84,7 @@
       <workItem from="1741802902113" duration="16791000" />
       <workItem from="1741882258039" duration="18930000" />
       <workItem from="1742241185194" duration="83000" />
-      <workItem from="1742241675196" duration="2849000" />
+      <workItem from="1742241675196" duration="2987000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -136,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741910553074</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update convo history and output formatting">
+      <option name="closed" value="true" />
+      <created>1742244832853</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742244832853</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +163,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="update chat saving" />
     <MESSAGE value="added ui dark light mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="added ui dark light mode" />
+    <MESSAGE value="update convo history and output formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="update convo history and output formatting" />
   </component>
 </project>

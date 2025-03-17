@@ -1,5 +1,3 @@
-import React from 'react';
-import { MessageSquare } from 'lucide-react';
 import {ThemeToggle} from "@/components/theme-toggle.tsx";
 
 const Header = () => {
