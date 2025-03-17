@@ -18,7 +18,11 @@ const escapeHTML = (text: string): string => {
 export const formatMarkdown = (text: string): string => {
     if (!text) return '';
 
-    let formattedText = text;
+    // First, clean up any LLM-specific tags like <think> that might be in the text
+    let formattedText = text.replace(/<think>.*?<\/think>/g, '');
+
+    // Remove multiple consecutive newlines (more than 2) to prevent excessive <br> tags
+    formattedText = formattedText.replace(/\n{3,}/g, '\n\n');
 
     // Convert code blocks with language
     formattedText = formattedText.replace(
@@ -120,12 +124,17 @@ export const formatMarkdown = (text: string): string => {
         }
     );
 
-    // Wrap plain text lines that are not already wrapped in block tags in paragraph tags.
+    // Wrap plain text lines that are not already wrapped in block tags in paragraph tags,
+    // but skip empty lines completely
     formattedText = formattedText
         .split('\n')
         .map((line) => {
+            // Skip empty lines completely - don't create empty paragraphs
+            if (!line.trim()) {
+                return '';
+            }
+
             if (
-                !line.trim() ||
                 /^<\/?(h\d|ul|ol|li|pre|blockquote|div|p|img|hr|code|strong|em|del|a)\b/.test(
                     line.trim()
                 )
@@ -136,8 +145,14 @@ export const formatMarkdown = (text: string): string => {
         })
         .join('\n');
 
-    // Convert remaining line breaks to <br>
-    formattedText = formattedText.replace(/\n/g, '<br>');
+    // Convert remaining line breaks to <br> but avoid creating consecutive <br> tags
+    formattedText = formattedText.replace(/\n+/g, '<br>');
+
+    // Clean up any double <br> tags that might have been created
+    formattedText = formattedText.replace(/<br><br>/g, '<br>');
+
+    // Clean up empty paragraphs
+    formattedText = formattedText.replace(/<p>\s*<\/p>/g, '');
 
     return formattedText;
 };

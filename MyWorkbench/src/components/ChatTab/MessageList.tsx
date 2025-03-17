@@ -1,4 +1,3 @@
-// components/ChatTab/MessageList.js
 import React, { useEffect, useRef } from 'react';
 import Message from './Message.tsx';
 import { useChat } from '../../contexts/ChatContent.tsx';
@@ -25,7 +24,7 @@ const MessageList = () => {
             ))}
 
             {isLoading && (
-                <div className="message bot-message flex items-center bg-slate-100 p-3 rounded-lg max-w-[100%]">
+                <div className="message bot-message flex items-center bg-slate-100 dark:bg-slate-700 p-3 rounded-lg max-w-[100%] text-slate-900 dark:text-slate-100">
                     <Loader2 className="h-5 w-5 mr-2 animate-spin" />
                     Thinking...
                 </div>
