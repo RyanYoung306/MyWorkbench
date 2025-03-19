@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/SavedLinksTab.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/globals.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" afterDir="false" />
+    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="add sidebar and layout components; refactor App component structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +88,7 @@
       <workItem from="1741882258039" duration="18930000" />
       <workItem from="1742241185194" duration="83000" />
       <workItem from="1742241675196" duration="3386000" />
-      <workItem from="1742419197732" duration="7446000" />
+      <workItem from="1742419197732" duration="8027000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -159,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742244913303</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add sidebar and layout components; refactor App component structure">
+      <option name="closed" value="true" />
+      <created>1742426796244</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742426796244</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +184,7 @@
     <MESSAGE value="update chat saving" />
     <MESSAGE value="added ui dark light mode" />
     <MESSAGE value="update convo history and output formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="update convo history and output formatting" />
+    <MESSAGE value="add sidebar and layout components; refactor App component structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="add sidebar and layout components; refactor App component structure" />
   </component>
 </project>

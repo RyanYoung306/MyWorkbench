@@ -1,18 +1,12 @@
 import {SidebarProvider} from "@/components/ui/sidebar"
 import {AppSidebar} from "@/components/app-sidebar"
 import Header from "@/components/Header"
-import React, { useState } from "react";
+import { useState } from "react";
 import ChatTab from "./components/ChatTab/ChatTab";
 import SavedLinksTab from "./components/SavedLinks/SavedLinksTab";
 
 
-interface LayoutProps {
-    children: React.ReactNode,
-    onSelectChat: () => void,
-    onSelectLinks?: () => void
-}
-
-export default function Layout({children}: LayoutProps) {
+export default function Layout() {
     const [activeTab, setActiveTab] = useState('LLM');
 
     return (
@@ -22,7 +16,6 @@ export default function Layout({children}: LayoutProps) {
                 <div className="flex flex-col w-full">
                     <Header/>
                     <main>
-                        {children}
                         {activeTab === 'LLM' && <ChatTab />}
                         {activeTab === 'SavedLinks' && <SavedLinksTab />}
                     </main>

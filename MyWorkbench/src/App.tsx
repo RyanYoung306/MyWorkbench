@@ -13,9 +13,7 @@ function App() {
         <ThemeProvider defaultTheme="system" storageKey="myworkbench-theme">
                 <ConnectionProvider>
                     <div className="w-full mx-auto">
-                        <Layout>
-
-                        </Layout>
+                        <Layout/>
                     </div>
                 </ConnectionProvider>
 
