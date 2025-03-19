@@ -1,8 +1,10 @@
 import {ThemeToggle} from "@/components/theme-toggle.tsx";
+import {SidebarTrigger} from "@/components/ui/sidebar.tsx";
 
 const Header = () => {
     return (
-        <header className="flex items-center gap-3 py-6 bg-slate-900 border-b border-slate-800">
+        <header className="w-screen flex items-center gap-3 py-6 bg-slate-900 border-b border-slate-800">
+            <SidebarTrigger />
             <svg className="h-12 w-12 ml-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                 <defs>
                     <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
