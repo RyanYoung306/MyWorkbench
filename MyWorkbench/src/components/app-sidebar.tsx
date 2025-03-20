@@ -50,7 +50,7 @@ interface AppSidebarProps {
 
 export function AppSidebar({ onSelectTab, activeTab }: AppSidebarProps)  {
     return (
-        <Sidebar>
+        <Sidebar >
             <SidebarContent>
                 <SidebarGroup>
                     {/*<SidebarGroupLabel>Application</SidebarGroupLabel>*/}

@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="add sidebar and layout components; refactor App component structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/SettingsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/SettingsPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" afterDir="false" />
     </list>
@@ -88,7 +91,7 @@
       <workItem from="1741882258039" duration="18930000" />
       <workItem from="1742241185194" duration="83000" />
       <workItem from="1742241675196" duration="3386000" />
-      <workItem from="1742419197732" duration="8027000" />
+      <workItem from="1742419197732" duration="15562000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -162,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742426796244</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add sidebar and layout components; refactor App component structure">
+      <option name="closed" value="true" />
+      <created>1742427394242</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742427394242</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

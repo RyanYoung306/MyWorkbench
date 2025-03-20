@@ -49,7 +49,7 @@ const SettingsPanel = () => {
     };
 
     return (
-        <div className="w-full md:w-1/3 space-y-4">
+        <div className="w-full space-y-4">
             <Card>
                 <CardHeader>
                     <CardTitle>Connection Settings</CardTitle>

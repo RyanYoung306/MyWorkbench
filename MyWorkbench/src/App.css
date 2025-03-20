@@ -5,39 +5,70 @@
   max-width: 100%; /* Larger max width */
 }
 
-/*.logo {*/
-/*  height: 6em;*/
-/*  padding: 1.5em;*/
-/*  will-change: filter;*/
-/*  transition: filter 300ms;*/
-/*}*/
-/*.logo:hover {*/
-/*  filter: drop-shadow(0 0 2em #646cffaa);*/
-/*}*/
-/*.logo.react:hover {*/
-/*  filter: drop-shadow(0 0 2em #61dafbaa);*/
-/*}*/
+/* Overlay for mobile when sidebar is open */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  display: none;
+}
 
-/*@keyframes logo-spin {*/
-/*  from {*/
-/*    transform: rotate(0deg);*/
-/*  }*/
-/*  to {*/
-/*    transform: rotate(360deg);*/
-/*  }*/
-/*}*/
+.sidebar-overlay.visible {
+  display: block;
+}
 
-/*@media (prefers-reduced-motion: no-preference) {*/
-/*  a:nth-of-type(2) .logo {*/
-/*    animation: logo-spin infinite 20s linear;*/
-/*  }*/
-/*}*/
+.sidebar-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-/*.card {*/
-/*  padding: 2em;*/
-/*}*/
+/* Sidebar styling */
+.sidebar {
+  position: fixed;
+  top: 100px; /* Adjust based on your header height */
+  left: 0;
+  height: calc(100vh - 80px); /* Full height minus header */
+  width: 260px; /* Adjust to your desired sidebar width */
+  background-color: var(--sidebar); /* Use your theme variables */
+  color: var(--sidebar-foreground);
+  z-index: 50;
+  transform: translateX(-100%); /* Hidden by default */
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
 
-/*.read-the-docs {*/
-/*  color: #888;*/
-/*}*/
+.sidebar.open {
+  transform: translateX(0); /* Visible when open */
+}
+
+/* Main content area */
+.main-content {
+  width: 100%;
+  padding: 1rem;
+  transition: margin 0.3s ease;
+}
+
+/* Apply margin to main content when sidebar is open on desktop */
+@media (min-width: 768px) {
+  .main-content.sidebar-open {
+    margin-left: 260px; /* Same as sidebar width */
+  }
+
+  .sidebar {
+    transform: translateX(0); /* Always visible on desktop */
+    box-shadow: none;
+  }
+
+  .sidebar:not(.open) {
+    /* Hidden on desktop when closed */
+    transform: translateX(-100%);
+  }
+}
 
