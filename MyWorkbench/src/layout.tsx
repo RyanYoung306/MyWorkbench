@@ -7,7 +7,7 @@ import SavedLinksTab from "./components/SavedLinks/SavedLinksTab";
 
 
 export default function Layout() {
-    const [activeTab, setActiveTab] = useState('LLM')
+    const [activeTab, setActiveTab] = useState('SavedLinks')
     const { open, openMobile, isMobile, toggleSidebar } = useSidebar()
 
     // Determine if we need to apply sidebar-open class to main content
