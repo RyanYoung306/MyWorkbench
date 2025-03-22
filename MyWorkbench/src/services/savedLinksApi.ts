@@ -110,3 +110,61 @@ export const initializeDefaultCollections = async (): Promise<boolean> => {
         return false;
     }
 };
+
+/**
+ * Gets the URL for a link's favicon
+ * @param category The category of the collection
+ * @param collectionId The collection ID
+ * @param linkId The link ID
+ * @returns The URL to use for the favicon
+ */
+export const getFaviconUrl = (
+    category: string,
+    collectionId: string,
+    linkId: string,
+    link: Link
+): string => {
+    // If the link already has a favicon URL stored, use it
+    if (link.favicon) {
+        // If it's already a data URL, return it directly
+        if (link.favicon.startsWith('data:')) {
+            return link.favicon;
+        }
+
+        // If it's an absolute URL, use it
+        if (link.favicon.startsWith('http')) {
+            return link.favicon;
+        }
+    }
+
+    // Use the API endpoint to fetch the favicon
+    return `${API_URL}/${category}/${collectionId}/links/${linkId}/favicon`;
+};
+
+/**
+ * Gets a domain name from a URL for display purposes
+ * @param url The full URL
+ * @returns The domain name
+ */
+export const getDomainFromUrl = (url: string): string => {
+    try {
+        // Ensure URL has protocol
+        if (!url.startsWith('http')) {
+            url = 'https://' + url;
+        }
+
+        const domain = new URL(url).hostname;
+        // Remove www. prefix if present
+        return domain.replace(/^www\./, '');
+    } catch (error) {
+        // If URL parsing fails, return the original URL
+        return url;
+    }
+};
+
+/**
+ * Gets a fallback favicon URL for cases where favicon retrieval fails
+ */
+export const getFallbackFaviconUrl = (): string => {
+    return `${API_URL}/fallback-favicon.ico`;
+};

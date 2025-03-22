@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="add sidebar and layout components; refactor App component structure">
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/services/savedLinksApi.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/types/savedLinks.ts" afterDir="false" />
+    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="enhance link management features; add validation to add link dialog; implement API integration for link collections">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/SavedLinksTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/SavedLinksTab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/add-link-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/add-link-dialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/link-collection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/link-collection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/services/savedLinksApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/services/savedLinksApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/types/savedLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/types/savedLinks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +94,7 @@
       <workItem from="1742241185194" duration="83000" />
       <workItem from="1742241675196" duration="3386000" />
       <workItem from="1742419197732" duration="15562000" />
-      <workItem from="1742658686429" duration="5309000" />
+      <workItem from="1742658686429" duration="12273000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -174,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742427394242</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="enhance link management features; add validation to add link dialog; implement API integration for link collections">
+      <option name="closed" value="true" />
+      <created>1742667206917</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1742667206917</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +207,7 @@
     <MESSAGE value="added ui dark light mode" />
     <MESSAGE value="update convo history and output formatting" />
     <MESSAGE value="add sidebar and layout components; refactor App component structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="add sidebar and layout components; refactor App component structure" />
+    <MESSAGE value="enhance link management features; add validation to add link dialog; implement API integration for link collections" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhance link management features; add validation to add link dialog; implement API integration for link collections" />
   </component>
 </project>

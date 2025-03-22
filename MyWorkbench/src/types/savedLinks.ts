@@ -4,6 +4,7 @@ export interface Link {
     id: string;
     title: string;
     url: string;
+    favicon?: string;
 }
 
 export interface LinkCollection {

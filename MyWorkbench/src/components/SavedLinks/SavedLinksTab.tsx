@@ -88,7 +88,7 @@ export default function SavedLinksTab() {
   }
 
   return (
-      <div className="container mx-auto p-6 max-w-6xl">
+      <div className="container w-full mx-auto p-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold">SavedLinks</h1>
           <Tabs defaultValue="personal" value={activeTab} onValueChange={(value) => setActiveTab(value as CategoryName)} className="w-[400px]">
@@ -117,7 +117,7 @@ export default function SavedLinksTab() {
               </Button>
             </div>
         ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
               {collections[activeTab].map((collection) => (
                   <LinkCollection
                       key={collection.id}
