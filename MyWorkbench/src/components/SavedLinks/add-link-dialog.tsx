@@ -1,9 +1,14 @@
-import type React from "react"
 import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 
 interface AddLinkDialogProps {
   open: boolean
@@ -14,61 +19,88 @@ interface AddLinkDialogProps {
 export default function AddLinkDialog({ open, onClose, onAdd }: AddLinkDialogProps) {
   const [title, setTitle] = useState("")
   const [url, setUrl] = useState("")
+  const [errors, setErrors] = useState<{title?: string; url?: string}>({})
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (title.trim() && url.trim()) {
-      onAdd(title, url)
-      setTitle("")
-      setUrl("")
+
+    // Validate inputs
+    const newErrors: {title?: string; url?: string} = {}
+
+    if (!title.trim()) {
+      newErrors.title = "Title is required"
     }
+
+    if (!url.trim()) {
+      newErrors.url = "URL is required"
+    } else if (!/^(https?:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,}(:[0-9]{1,5})?(\/.*)?$/i.test(url)) {
+      newErrors.url = "Please enter a valid URL"
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
+    // Clear any errors
+    setErrors({})
+
+    // Add the link
+    onAdd(title, url)
+
+    // Reset form
+    setTitle("")
+    setUrl("")
+  }
+
+  const handleClose = () => {
+    setTitle("")
+    setUrl("")
+    setErrors({})
+    onClose()
   }
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Add New Link</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit}>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="title" className="text-right">
-                Title
-              </Label>
-              <Input
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="col-span-3"
-                placeholder="e.g., Google, Twitter, etc."
-                autoFocus
-              />
+      <Dialog open={open} onOpenChange={handleClose}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Add New Link</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="title">Title</Label>
+                <Input
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="My Website"
+                />
+                {errors.title && (
+                    <p className="text-sm text-destructive">{errors.title}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="url">URL</Label>
+                <Input
+                    id="url"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    placeholder="https://example.com"
+                />
+                {errors.url && (
+                    <p className="text-sm text-destructive">{errors.url}</p>
+                )}
+              </div>
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="url" className="text-right">
-                URL
-              </Label>
-              <Input
-                id="url"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                className="col-span-3"
-                placeholder="e.g., https://google.com"
-              />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={!title.trim() || !url.trim()}>
-              Add Link
-            </Button>
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button type="submit">Add Link</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
   )
 }
-

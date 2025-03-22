@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="add sidebar and layout components; refactor App component structure">
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/services/savedLinksApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/types/savedLinks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatTab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/SettingsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/SettingsPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/SavedLinksTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/SavedLinksTab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/add-link-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/add-link-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/link-collection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/link-collection.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +22,7 @@
       <list>
         <option value="CSS File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -92,6 +92,7 @@
       <workItem from="1742241185194" duration="83000" />
       <workItem from="1742241675196" duration="3386000" />
       <workItem from="1742419197732" duration="15562000" />
+      <workItem from="1742658686429" duration="5309000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
