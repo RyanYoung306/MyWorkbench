@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { LinkIcon, Trash2, Plus } from "lucide-react"
 import type { Link as LinkType, LinkCollection as LinkCollectionType } from "@/types/savedLinks"
-import { addLink, removeLink, getFaviconUrl, getDomainFromUrl } from "@/services/savedLinksApi"
+import {addLink, removeLink, getFaviconUrl, getDomainFromUrl, deleteCollection} from "@/services/savedLinksApi"
 import AddLinkDialog from "./add-link-dialog"
 import ConfirmationDialog from "./ConfirmationDialog.tsx";
 
@@ -62,15 +62,26 @@ export default function LinkCollection({
     }
   }
 
-  const handleConfirmDeleteLink = () => {
-    handleRemoveLink(selectedLinkId)
+  const handleRemoveCollection = async (collectionId: string) => {
+    try {
+      const deletionSuccess = await deleteCollection(category, collectionId)
+      if (deletionSuccess) {
+        onDelete(collectionId)
+      }
+    } catch (error) {
+      console.error("Failed to remove collection:", error)
+    }
+  }
+
+  const handleConfirmDeleteLink = async () => {
+    await handleRemoveLink(selectedLinkId)
     setShowDeleteLinkDialog(false)
     setSelectedLinkId("")
     setSelectedLinkTitle("")
   }
 
-  const handleConfirmDeleteCollection = () => {
-    onDelete(collectionId)
+  const handleConfirmDeleteCollection = async () => {
+    await handleRemoveCollection(collectionId)
     setShowDeleteCollectionDialog(false)
   }
 
