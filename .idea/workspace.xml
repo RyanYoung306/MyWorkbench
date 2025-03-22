@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="enhance link collection component; add favicon handling and domain extraction; update package dependencies">
+    <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="update active tab in layout component; modify workspace.xml to reflect layout changes">
+      <change afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/ConfirmationDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/link-collection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/link-collection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/services/savedLinksApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/services/savedLinksApi.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +19,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -88,7 +90,7 @@
       <workItem from="1742241185194" duration="83000" />
       <workItem from="1742241675196" duration="3386000" />
       <workItem from="1742419197732" duration="15562000" />
-      <workItem from="1742658686429" duration="13701000" />
+      <workItem from="1742658686429" duration="17164000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -194,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742675197129</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update active tab in layout component; modify workspace.xml to reflect layout changes">
+      <option name="closed" value="true" />
+      <created>1742677927635</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1742677927635</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +229,7 @@
     <MESSAGE value="add sidebar and layout components; refactor App component structure" />
     <MESSAGE value="enhance link management features; add validation to add link dialog; implement API integration for link collections" />
     <MESSAGE value="enhance link collection component; add favicon handling and domain extraction; update package dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhance link collection component; add favicon handling and domain extraction; update package dependencies" />
+    <MESSAGE value="update active tab in layout component; modify workspace.xml to reflect layout changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="update active tab in layout component; modify workspace.xml to reflect layout changes" />
   </component>
 </project>

@@ -116,6 +116,7 @@ export const initializeDefaultCollections = async (): Promise<boolean> => {
  * @param category The category of the collection
  * @param collectionId The collection ID
  * @param linkId The link ID
+ * @param link
  * @returns The URL to use for the favicon
  */
 export const getFaviconUrl = (
