@@ -1,6 +1,6 @@
 // src/services/savedLinksApi.ts
 
-import { LinkCollection } from '../types/savedLinks';
+import {Link, LinkCollection} from '../types/savedLinks';
 
 const API_URL = 'http://localhost:8080/api/saved-links';
 
