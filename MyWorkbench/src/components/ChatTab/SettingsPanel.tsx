@@ -1,4 +1,3 @@
-import React from 'react';
 import { useConnection } from '../../contexts/ConnectionContext.tsx';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card.tsx';
 import { Label } from '../ui/label.tsx';
@@ -40,10 +39,12 @@ const SettingsPanel = () => {
         return isConnected ? 'Connected to LLM API' : 'Disconnected';
     };
 
-    const handleTemperatureChange = (value) => {
+    // @ts-ignore
+    const handleTemperatureChange = (value: number[]): void => {
         setModelParameter('temperature', value[0]);
     };
 
+    // @ts-ignore
     const handleMaxTokensChange = (e) => {
         setModelParameter('maxTokens', parseInt(e.target.value));
     };

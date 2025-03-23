@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a43fa935-d03d-4e78-baa1-6db7d15c2c85" name="Changes" comment="add confirmation dialog for link and collection deletion; integrate into link collection component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/link-collection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/SavedLinks/link-collection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/ChatHistory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/SettingsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/ChatTab/SettingsPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/app-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/theme-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/theme-provider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/components/theme-toggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/components/theme-toggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/src/contexts/ChatContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/src/contexts/ChatContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyWorkbench/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyWorkbench/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +96,8 @@
       <workItem from="1742241185194" duration="83000" />
       <workItem from="1742241675196" duration="3386000" />
       <workItem from="1742419197732" duration="15562000" />
-      <workItem from="1742658686429" duration="18564000" />
+      <workItem from="1742658686429" duration="20671000" />
+      <workItem from="1742761779086" duration="866000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -210,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742682431960</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add confirmation dialog for link and collection deletion; integrate into link collection component">
+      <option name="closed" value="true" />
+      <created>1742684367100</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1742684367100</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

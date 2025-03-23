@@ -1,11 +1,10 @@
-import { Calendar, Home, Inbox, Search, Settings, Link, Bot } from "lucide-react"
+import {Link, Bot } from "lucide-react"
 
 import {
     Sidebar,
     SidebarContent,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,

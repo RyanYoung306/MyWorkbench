@@ -27,11 +27,11 @@ interface ChatContextValue {
     isLoading: boolean;
     chatHistory: ChatHistoryItem[];
     currentChatId: string | null;
-    addMessage: (content: string, sender: Message['sender']) => Message;
+    addMessage: (content: string, sender: Message["sender"]) => Message;
     sendMessage: (content: string) => Promise<void>;
     createNewChat: () => string;
     loadChatHistoryById: (chatId: string) => Promise<void>;
-    deleteChatHistory: (chatId: string | number) => Promise<void>;
+    deleteChatHistory: (chatId: string) => Promise<void>; // changed here from string | number to string
     clearAllChatHistories: () => Promise<void>;
     loadChatHistoryList: () => Promise<void>;
 }
@@ -249,53 +249,53 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
         }
     }, [isConnected, apiUrl, loadChatHistoryList]);
 
-    const saveCurrentChat = useCallback(async (): Promise<void> => {
-
-        if (!isConnected || !currentChatId) {
-            console.log("Not saving chat: Not connected or no current chat ID");
-            return;
-        }
-
-        // if (messages.length <= 1) {
-        //     console.log("Not saving chat: Too few messages", messages);
-        //     return;
-        // }
-
-        try {
-            // Generate title from first user message
-            let title = 'New Chat';
-            const firstUserMsg = messages.find(msg => msg.sender === 'user');
-            if (firstUserMsg) {
-                title = firstUserMsg.content.length > 30
-                    ? firstUserMsg.content.substring(0, 30) + '...'
-                    : firstUserMsg.content;
-            }
-
-            // Format messages for API
-            const apiMessages: ApiMessage[] = messages.map(msg => ({
-                role: msg.sender === 'user' ? 'user' : 'assistant',
-                content: msg.content
-            }));
-
-            // Send to backend
-            await fetch(`${apiUrl}/api/chat-history`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id: currentChatId,
-                    title,
-                    messages: apiMessages
-                })
-            });
-
-            // Refresh history
-            loadChatHistoryList();
-        } catch (error) {
-            console.error('Error saving chat history:', error);
-        }
-    }, [isConnected, apiUrl, currentChatId, messages, loadChatHistoryList]);
+    // const saveCurrentChat = useCallback(async (): Promise<void> => {
+    //
+    //     if (!isConnected || !currentChatId) {
+    //         console.log("Not saving chat: Not connected or no current chat ID");
+    //         return;
+    //     }
+    //
+    //     // if (messages.length <= 1) {
+    //     //     console.log("Not saving chat: Too few messages", messages);
+    //     //     return;
+    //     // }
+    //
+    //     try {
+    //         // Generate title from first user message
+    //         let title = 'New Chat';
+    //         const firstUserMsg = messages.find(msg => msg.sender === 'user');
+    //         if (firstUserMsg) {
+    //             title = firstUserMsg.content.length > 30
+    //                 ? firstUserMsg.content.substring(0, 30) + '...'
+    //                 : firstUserMsg.content;
+    //         }
+    //
+    //         // Format messages for API
+    //         const apiMessages: ApiMessage[] = messages.map(msg => ({
+    //             role: msg.sender === 'user' ? 'user' : 'assistant',
+    //             content: msg.content
+    //         }));
+    //
+    //         // Send to backend
+    //         await fetch(`${apiUrl}/api/chat-history`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 id: currentChatId,
+    //                 title,
+    //                 messages: apiMessages
+    //             })
+    //         });
+    //
+    //         // Refresh history
+    //         loadChatHistoryList();
+    //     } catch (error) {
+    //         console.error('Error saving chat history:', error);
+    //     }
+    // }, [isConnected, apiUrl, currentChatId, messages, loadChatHistoryList]);
 
     const deleteChatHistory = useCallback(async (chatId: string): Promise<void> => {
         try {

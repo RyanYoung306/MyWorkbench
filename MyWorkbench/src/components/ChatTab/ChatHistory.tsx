@@ -1,7 +1,7 @@
 import { useChat } from '../../contexts/ChatContent.tsx';
 import { Button } from '../ui/button.tsx';
 import { PlusCircle, Trash2, X, MessageSquare } from 'lucide-react';
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import { ScrollArea } from '../ui/scroll-area';
 import { useTheme } from '../theme-provider';
 
@@ -24,7 +24,7 @@ const ChatHistory = () => {
     const handleDeleteClick = (e: React.MouseEvent, chatId: string | number) => {
         e.stopPropagation();
         if (window.confirm('Delete this conversation?')) {
-            deleteChatHistory(chatId);
+            deleteChatHistory(String(chatId));
         }
     };
 
@@ -96,7 +96,7 @@ const ChatHistory = () => {
                                             {chat.title || "Untitled Chat"}
                                         </div>
                                         <button
-                                            className={`opacity-0 group-hover:opacity-100 ml-2 transition-opacity p-1 rounded 
+                                            className={`opacity-0 group-hover:opacity-100 ml-2 transition-opacity p-1 rounded
                                                 ${theme === 'dark'
                                                 ? 'hover:bg-slate-700'
                                                 : 'hover:bg-slate-200'}`}
